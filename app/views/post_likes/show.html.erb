@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post_like %>
+
+<div>
+  <%= link_to "Edit this post like", edit_post_like_path(@post_like) %> |
+  <%= link_to "Back to post likes", post_likes_path %>
+
+  <%= button_to "Destroy this post like", @post_like, method: :delete %>
+</div>
