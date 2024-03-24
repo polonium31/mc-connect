@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-    has_secure_password
-    has_many :comments, foreign_key: "created_by"
-    has_many :likes, foreign_key: "liked_by"
-    has_many :posts
+    has_many :posts, dependent: :destroy
+
+    validates :name, presence:true, length:{minimum: 2, maximum:30}
+    
+   
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    validates :email, presence:true, uniqueness:{case_sensitive: false }, format:{with: VALID_EMAIL_REGEX}
+
 end
