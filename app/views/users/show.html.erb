@@ -1,0 +1,13 @@
+<div class="user-profile">
+    <h3>Name: <%= @user.name %></h3>
+    <p>Email :<%= @user.email %></p>
+    <p>Program :<%= @user.program_name %></p>
+    <p>department : <%= @user.department %></p>
+
+     <% if logged_in? && @user == current_user %>
+     <%= link_to "Edit profile", edit_user_path(@user) %>
+     <%= link_to "Delete profile", user_path(@user), 
+     data:{turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% end %>
+
+</div>

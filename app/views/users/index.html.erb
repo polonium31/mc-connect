@@ -1,0 +1,12 @@
+<div class="all-users">
+    <div class="flex-users-box">
+        <% @users.each do |user| %>
+        <div class="user-box">
+            <h5><%= user.name %></h5>
+            <%= link_to "View profile", user_path(user) %>
+        </div>
+        <br/>
+        <hr/>
+        <% end %>
+    </div>
+</div>
