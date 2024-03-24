@@ -57,7 +57,7 @@ end
 private
 
 def user_params
-    params.require(:user).permit(:name,:email, :password,:program_name,:department)
+    params.require(:user).permit(:name,:email, :password,:program_name,:department,:instagram_link, :linkedin_link)
 end
 
 def find_user

@@ -4,6 +4,23 @@
     <p>Program :<%= @user.program_name %></p>
     <p>department : <%= @user.department %></p>
 
+    <div class="user_links">
+
+                        <% if @user.instagram_link? %>
+                            <%= link_to @user.instagram_link ,target: "_blank" do%>
+                                <span>My instagram</span>
+                                <% end %>
+                                    <% end %>
+                                     <% if @user.linkedin_link? %>
+                                        <%= link_to @user.linked_link, target: "_blank" do%>
+                                          <span>My linkedIn</span>
+                                            <% end %>
+                                            <% end %>
+                                             
+                                                            
+    </div>
+
+
      <% if logged_in? && @user == current_user %>
      <%= link_to "Edit profile", edit_user_path(@user) %>
      <%= link_to "Delete profile", user_path(@user), 
