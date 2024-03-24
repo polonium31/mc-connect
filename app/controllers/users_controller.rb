@@ -1,70 +1,67 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+    before_action :find_user, only: [:show,:edit,:update, :destroy]
 
-  # GET /users or /users.json
-  def index
+#users lists
+def index
     @users = User.all
-  end
+end
 
-  # GET /users/1 or /users/1.json
-  def show
-  end
+#each user show route
+def show
+  
+end
 
-  # GET /users/new
-  def new
+#signup route or new user route
+def new
     @user = User.new
-  end
+end
 
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users or /users.json
-  def create
+#new user action
+def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+        session[:user_id] = @user.id
+        flash[:notice] = "User created successfully"
+        redirect_to posts_path
+    else
+      render 'new'
     end
-  end
+end
 
-  # PATCH/PUT /users/1 or /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+#edit user route
+def edit
+end
+
+#edit user action
+def update
+     if @user.update(user_params)
+        flash[:notice] = "User updated successfully"
+        redirect_to posts_path
+    else
+      render 'edit'
     end
-  end
+end
 
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+#deletes user action
+def destroy
+    if @user.destroy
+        flash[:notice] = "Account deleted"
+        redirect_to root_path
+    else
+        flash[:alert] = "Unable to delete account"
     end
-  end
+end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:name, :linkedin, :instagram, :email, :program_name, :department, :interest, :password_digest)
-    end
+
+private
+
+def user_params
+    params.require(:user).permit(:name,:email, :password,:program_name,:department,:instagram_link, :linkedin_link)
+end
+
+def find_user
+    @user = User.find(params[:id]) 
+end
+
 end

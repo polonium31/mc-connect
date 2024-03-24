@@ -1,14 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+<div class="all-users">
+    <div class="flex-users-box">
+        <% @users.each do |user| %>
+        <div class="user-box">
+            <h5><%= user.name %></h5>
+            <%= link_to "View profile", user_path(user) %>
+        </div>
+        <br/>
+        <hr/>
+        <% end %>
+    </div>
 </div>
-
-<%= link_to "New user", new_user_path %>

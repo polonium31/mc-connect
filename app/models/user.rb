@@ -1,6 +1,32 @@
 class User < ApplicationRecord
+    before_save {self.email = email.downcase}
+    before_save :add_https_to_links
+    has_many :posts, dependent: :destroy
+    validates :name, presence:true, length:{minimum: 2, maximum:30}
+    
+   
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    validates :email, presence:true, uniqueness:{case_sensitive: false }, format:{with: VALID_EMAIL_REGEX}
+
     has_secure_password
-    has_many :comments, foreign_key: "created_by"
-    has_many :likes, foreign_key: "liked_by"
-    has_many :posts
+
+
+    def instagram_link?
+        instagram_link.present?
+      end
+    
+      def facebook_link?
+        linkedin_link.present?
+      end
+
+    private
+      def add_https_to_links
+        link_attributes = [:instagram_link, :linkedin_link]
+    
+        link_attributes.each do |attribute|
+          if self[attribute].present? && !self[attribute].start_with?('http://', 'https://')
+            self[attribute] = "https://#{self[attribute]}"
+          end
+        end
+      end
 end

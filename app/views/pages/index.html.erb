@@ -1,0 +1,30 @@
+<header>
+    <nav>
+        <ul>
+            <li>
+                <%= link_to "Home" , root_path, class:"home_link" %>
+            </li>
+            <li>
+                <%= link_to "users" , users_path %>
+            </li>
+
+            <% if logged_in? %>
+                <li>
+                    <%= link_to "Sign Out" , signout_path, data:{turbo_method: :delete, turbo_confirm:"Sign out of
+                        sharp"} %>
+                </li>
+                <li>@<%= link_to current_user.name, user_path(current_user) %>
+                </li>
+                <% else %>
+                    <li>
+                        <%= link_to "Sign Up" , signup_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Sign In" , signin_path %>
+                    </li>
+                    <% end %>
+
+                        </div>
+        </ul>
+    </nav>
+</header>

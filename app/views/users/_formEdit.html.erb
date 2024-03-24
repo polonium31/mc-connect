@@ -13,9 +13,29 @@
         <%= f.email_field :email, placeholder:"Enter your Email"  %>
       </div>
 
+      <div class="form_box">
+        <%= f.label :program_name %>
+        <%= f.text_field :program_name, placeholder:"Enter your program"  %>
+      </div>
+
+      <div class="form_box">
+        <%= f.label :department %>
+        <%= f.text_field :department, placeholder:"Enter your department"  %>
+      </div>
+
       <div class="form_box password_box">
         <%= f.label :password %>
         <%= f.password_field :password, placeholder:"Enter Password"  %>
+      </div>
+      <div class="form_box password_box">
+        <h2>Social links</h2>
+        </div>
+
+      <div class="form_box password_box">
+        <%= f.text_field :instagram_link, placeholder:"Enter your Instagram link" %>
+      </div>
+      <div class="form_box password_box">
+        <%= f.text_field :linkedin_link, placeholder:"Enter your linkedin link" %>
       </div>
       
         <%= f.submit(@user.new_record? ? "Sign Up" : "Update account", class:"sign_btn") %>

@@ -1,13 +1,29 @@
 class ApplicationController < ActionController::Base
-    before_action :authorize
 
-    private
-  
-    def authorize
-      redirect_to login_path unless current_user
-    end
-  
+    helper_method :current_user, :logged_in?
+
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
+
+    def logged_in?
+        !!current_user
+    end
+
+
+    def require_user
+        if !logged_in?
+            flash[:alert] = "Please sign in to your account"
+            redirect_to signin_path
+        end
+    end
+
+    def require_user
+        if !logged_in?
+            flash[:alert] = "Please sign in to your account"
+            redirect_to signin_path
+        end
+    end
+
+    
 end

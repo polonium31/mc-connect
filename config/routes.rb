@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  resources :users
+  root 'pages#index'
+  get 'signup', to: 'users#new' 
+  resources :users, except: [:new]
   resources :comments
   resources :likes
   resources :posts do
     resources :post_comments
     resources :post_likes
   end
-  root 'users#index'
+  #user login & logout
+  get 'signin', to: 'sessions#new' 
+  post 'signin', to: 'sessions#create'
+  delete 'signout', to: 'sessions#destroy'
 end
