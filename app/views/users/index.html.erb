@@ -1,12 +1,15 @@
+<%= render 'pages/navbar' %>
+<%= stylesheet_link_tag 'user_profile_card.css' %>
 <div class="all-users">
-    <div class="flex-users-box">
-        <% @users.each do |user| %>
-        <div class="user-box">
-            <h5><%= user.name %></h5>
-            <%= link_to "View profile", user_path(user) %>
-        </div>
-        <br/>
-        <hr/>
-        <% end %>
-    </div>
+  <div class="user-profile-card">
+    <% if @user %>
+      <%= render 'user_profile_card', user: @user %>
+      <div class="navigation-buttons">
+        <%= link_to "Previous", users_path(user_index: @current_user_index - 1), class: "btn btn-primary mr-2" if @current_user_index > 0 %>
+        <%= link_to "Next", users_path(user_index: @current_user_index + 1), class: "btn btn-primary" if @current_user_index < @users.length - 1 %>
+      </div>
+    <% else %>
+      <p>No more user profiles to display.</p>
+    <% end %>
+  </div>
 </div>

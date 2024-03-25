@@ -1,3 +1,9 @@
+.navbar{
+    background-color: #ffffff;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(22deg, #c4e1fe 30%, #f8f0ff 70%);
+
+}
 .navbar-nav .nav-link{
     box-sizing: border-box;
   -webkit-appearance: none;
@@ -19,7 +25,7 @@
   font-weight: 400;
   line-height: 1;
   margin: 20px;
-  padding: 1.2em 2.8em;
+  padding: 1rem;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
@@ -32,4 +38,36 @@
     color: #fff;
     outline: 0;
     box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+.user-name-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid #3d6aff;
+    border-radius: 0.6em;
+    color: #474747;
+    padding: 10px;
+    text-align: center;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.user-name:hover {
+    background-color: #fd9084;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

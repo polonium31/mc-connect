@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag 'user_profile_card.css' %>
+<div class="wrapper">
+<div class="img-area">
+  <div class="inner-area">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
+  </div>
+</div>
+<div class="name"><%= user.name %></div>
+<div class="about"><%= user.program_name %>, <%= user.department %></div>
+<div class="social-icons">
+  <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+  <% if user.instagram_link? %>
+    <%= link_to "#", target: "_blank", class: "insta" do %>
+      <i class="fab fa-instagram"> </i> 
+    <% end %>
+  <% end %>
+  <a href="#" class="github"><i class="fab fa-github"></i></a>
+</div>
+<div class="links-div">
+  <% if user.linkedin_link? %>
+      <%= link_to user.linkedin_link, target: "_blank", class: "links", id:"linkedin" do %>
+        <i class="fab fa-linkedin-in"> </i> LinkedIn
+      <% end %>
+    <% end %>
+  <%= link_to "mailto:#{user.email}", class: "links", id:"email" do %>
+    <i class="far fa-envelope"></i> Email
+  <% end %>
+</div>
+</div>
