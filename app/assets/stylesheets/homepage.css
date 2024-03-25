@@ -1,0 +1,28 @@
+.homepage-main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-div-home {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+}
+
+.homepage-image {
+    max-width: 50%;
+}
+
+.homepage-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.homepage-description {
+    font-size: 1.25rem;
+    color: #555;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+}

@@ -1,20 +1,30 @@
-<div class="user-form">
-    <h1 class="text-danger">Welcome Back!</h1>
-    <%= form_with( scope: :session, url: signin_path, data:{turbo: false},
-         local: true, class:"form_con") do |f| %>
-        
-          <div class="form_box username_box">
-            <%= f.label :email %>
-            <%= f.email_field :email, placeholder:"Enter your email"  %>
-          </div>
-    
-          <div class="form_box password_box">
-            <%= f.label :password %>
-            <%= f.password_field :password, placeholder:"Enter Password"  %>
-          </div>
-    
+<%= stylesheet_link_tag 'login.css' %>
+<div class="main-login-div">
+  <div class="text-center mb-4 border-1">
+    <%= image_tag("logo.png", alt: "Logo", class: "logo-img") %>
+  </div>
+  <div class="user-form container">
+      <%= form_with(scope: :session, url: signin_path, class: "form_con") do |f| %>
+      
           
-            <%= f.submit "Sign in" , class:"sign_btn" %>
-          
-        <% end %> 
-    </div> 
+          <div class="form-group username_box">
+              <%= f.label :email, class: "form-label" %>
+              <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
+          </div>
+
+          <div class="form-group password_box">
+              <%= f.label :password, class: "form-label" %>
+              <%= f.password_field :password, placeholder: "Enter Password", class: "form-control" %>
+          </div>
+
+          <div class="text-center">
+               <%= f.submit "Log In", class: "btn sign_btn mt-4" %>
+           </div>
+      <% end %> 
+      <hr>
+      <div class="alter-div text-center">
+      <p>Don't have an account?</p>
+      <%= link_to "Sign Up", signup_path, class: "btn sign_btn signup_btn mt-4" %>
+      </div>
+  </div>
+</div>
