@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             flash[:notice] = "User created successfully"
-            redirect_to posts_path
+            redirect_to users_path(@user)
         else
         render 'new'
         end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     def update
         if @user.update(user_params)
             flash[:notice] = "User updated successfully"
-            redirect_to posts_path
+            redirect_to users_path(@user)
         else
         render 'edit'
         end

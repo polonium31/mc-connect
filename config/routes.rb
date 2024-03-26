@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :post_comments
     resources :post_likes
   end
+
   #user login & logout
   get 'signin', to: 'sessions#new' 
   post 'signin', to: 'sessions#create'

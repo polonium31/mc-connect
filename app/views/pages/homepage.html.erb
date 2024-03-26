@@ -1,5 +1,6 @@
 <%= render 'navbar' %>
 <%= stylesheet_link_tag 'homepage.css' %>
+
 <div class="container d-flex justify-content-center align-items-center homepage-main-div">
     <div class="text-center">
         <%= image_tag("homepage.svg", alt: "homepage gif", class: "homepage-image mb-3") %>
@@ -7,6 +8,11 @@
         <div class="text-center">
             <h2 class="homepage-heading">Welcome to McConnect</h2>
             <p class="homepage-description">McConnect is a user-friendly social networking platform for university students that integrates casual connections with professional networking</p>
+            
+            <% if logged_in? %>
+                <% user = User.find_by(id: current_user.id) %>
+                <%= link_to "Explore Profiles", users_path(user), class: "btn btn-primary mt-3" %>
+            <% end %>
         </div>
     </div>
 </div>
