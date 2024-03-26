@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   root 'pages#homepage'
   get 'signup', to: 'users#new' 
   resources :users, except: [:new]
-  resources :comments
-  resources :likes
   resources :posts do
-    resources :post_comments
-    resources :post_likes
+    resources :comment_posts
   end
 
   #user login & logout

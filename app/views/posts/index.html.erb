@@ -9,7 +9,8 @@
     <% @posts.each do |post| %>
       <div class="posts-card mb-3">
           <h3 class="posts-card-title"><%= post.title %></h3>
-          <p class="posts-card-text"><%= truncate(post.content, length: 200) %></p>
+          <p class="posts-card-text"><%= truncate(strip_tags(post.content), length: 200, separator: ' ') %>
+          </p>
           <%= link_to "Read more", post, class: "posts-card-btn" %>
       </div>
     <% end %>

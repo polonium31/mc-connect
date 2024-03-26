@@ -2,10 +2,10 @@
 
 one:
   content: MyText
+  user: one
   post: one
-  created_by: one
 
 two:
   content: MyText
+  user: two
   post: two
-  created_by: two

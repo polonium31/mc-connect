@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_26_172246) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_26_215911) do
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -22,47 +22,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_172246) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comment_posts", force: :cascade do |t|
     t.text "content"
     t.integer "user_id", null: false
-    t.integer "created_by_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["created_by_id"], name: "index_comments_on_created_by_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["post_id"], name: "index_comment_posts_on_post_id"
+    t.index ["user_id"], name: "index_comment_posts_on_user_id"
   end
 
-  create_table "comments_posts", id: false, force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "comment_id", null: false
+  create_table "like_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_like_users_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "liked_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["liked_by_id"], name: "index_likes_on_liked_by_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-  create_table "post_comments", force: :cascade do |t|
-    t.text "content"
-    t.integer "post_id", null: false
-    t.integer "created_by_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["created_by_id"], name: "index_post_comments_on_created_by_id"
-    t.index ["post_id"], name: "index_post_comments_on_post_id"
-  end
-
-  create_table "post_likes", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "liked_by_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["liked_by_id"], name: "index_post_likes_on_liked_by_id"
-    t.index ["post_id"], name: "index_post_likes_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -85,12 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_172246) do
     t.string "linkedin_link"
   end
 
-  add_foreign_key "comments", "created_bies"
-  add_foreign_key "comments", "users"
-  add_foreign_key "likes", "liked_bies"
+  add_foreign_key "comment_posts", "posts"
+  add_foreign_key "comment_posts", "users"
+  add_foreign_key "like_users", "users"
   add_foreign_key "likes", "users"
-  add_foreign_key "post_comments", "created_bies"
-  add_foreign_key "post_comments", "posts"
-  add_foreign_key "post_likes", "liked_bies"
-  add_foreign_key "post_likes", "posts"
 end

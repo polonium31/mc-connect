@@ -1,18 +1,38 @@
 <%= render 'pages/navbar' %>
 <%= stylesheet_link_tag 'post.css' %>
 
-
-
 <div class="container">
-  <%= render @post %>
-    <% if current_user == @post.user %>
+  <% if current_user == @post.user %>
     <div class="d-flex justify-content-around mt-3">
       <%= link_to "Edit Post", edit_post_path(@post), class: "action-btn" %>
       <%= button_to "Delete Post", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "action-btn" %>
     </div>
+  <% end %>
+
+  <%= render @post %>
+
+  <div class="mt-3">
+    <h2>Comments</h2>
+    <% @post.comment_posts.each do |comment_post| %>
+      <div class="comment">
+        <p><strong><%= comment_post.user.name %>:</strong> <%= comment_post.content %></p>
+      </div>
     <% end %>
-    <div class="mt-3">
-    <%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-5" %>
   </div>
+
+  <% if logged_in? %>
+    <%= form_with(model: [@post, CommentPost.new]) do |form| %>
+      <div class="form-group">
+        <%= form.label :content, "New Comment" %>
+        <%= form.text_area :content, class: "form-control", rows: 3 %>
+      </div>
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <p>Please <%= link_to "log in", login_path %> to leave a comment.</p>
+  <% end %>
+
+  <div class="mt-3">
+    <%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-5" %>
   </div>
 </div>
