@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root 'pages#homepage'
   get 'signup', to: 'users#new' 
   resources :users, except: [:new]
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
   #user login & logout
   get 'signin', to: 'sessions#new' 
   post 'signin', to: 'sessions#create'
-  delete 'signout', to: 'sessions#destroy'
+  get 'signout', to: 'sessions#destroy'
 end

@@ -1,18 +1,12 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+<%= stylesheet_link_tag 'post.css' %>
 
-  <p>
-    <strong>Content:</strong>
-    <%= post.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= post.user_id %>
-  </p>
-
-
+<div id="<%= dom_id post %>" class="post mt-3">
+  <h1 class="title"><%= post.title %></h1>
+  <div class="content">
+    <%= sanitize post.content.html_safe %>
+  </div>
+  <div class="author-div">
+    <p class="author-name"><strong>Authored By:</strong> <%= post.user.name %></p>
+    <p class="date"><strong>Posted Date:</strong> <%= post.created_at.strftime("%B %d, %Y") %></p>
+  </div>
 </div>

@@ -1,14 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<%= render 'pages/navbar' %>
+<%= stylesheet_link_tag 'posts.css' %>
+<div class="container">
+  <div class="text-end mb-4">
+    <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+  </div>
 
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <div class="posts-card mb-3">
+          <h3 class="posts-card-title"><%= post.title %></h3>
+          <p class="posts-card-text"><%= truncate(post.content, length: 200) %></p>
+          <%= link_to "Read more", post, class: "posts-card-btn" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New post", new_post_path %>

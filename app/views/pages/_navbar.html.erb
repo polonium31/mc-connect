@@ -12,12 +12,17 @@
                     <% if logged_in? %>
                     <div class="user-name-div">
                         <li class="nav-item">
-                            <%= link_to edit_user_path(current_user), class: "user-name" do %>
-                                <span class="user-name"> <i class="fab fa-pen-to-square"></i> Edit profile</span>
+                            <%= link_to posts_path, class: "user-links" do %>
+                                <i class="fas fa-newspaper"> </i> Posts
                             <% end %>
                         </li>
                         <li class="nav-item">
-                            <%= link_to "Sign Out", signout_path, class: "nav-link", data: { turbo_method: :delete, turbo_confirm: "Sign out of Sharp" } %>
+                            <%= link_to edit_user_path(current_user), class: "user-links" do %>
+                                <i class="fas fa-user"> </i> Profile
+                            <% end %>
+                        </li>
+                        <li class="nav-item">
+                             <%= link_to "Sign Out", signout_path, class: "nav-link", data: { turbo_method: :delete, turbo_confirm: "Sign out of Sharp" } %>
                         </li>
                     </div>
                     <% else %>

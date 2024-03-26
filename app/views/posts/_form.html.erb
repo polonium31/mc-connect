@@ -1,32 +1,29 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post, class: "mt-5") do |form| %>
   <% if post.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% post.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+  <%= form.label :Title, class: "form-label", style: "font-weight: bold;" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
+  <div class="mb-3">
+  <%= form.label :Content, class: "form-label", style: "font-weight: bold;" %>
+  <%= form.cktext_area :content, class: "form-control" %>
+</div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-5" %>

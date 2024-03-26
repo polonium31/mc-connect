@@ -46,28 +46,22 @@
 
 }
 
-.user-name {
+.user-links {
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: capitalize;
     font-family: 'Courier New', Courier, monospace;
     text-decoration: none;
     color: #000000;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     background-color: transparent;
-    border: 1px solid #3d6aff;
-    border-radius: 0.6em;
+    border-radius: 0.2em;
     color: #474747;
-    padding: 10px;
+    padding: 5px;
+    margin-right: 10px;
     text-align: center;
-    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.user-name:hover {
-    background-color: #fd9084;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.user-links:hover {
+    padding: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }

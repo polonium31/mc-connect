@@ -1,10 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<%= render 'pages/navbar' %>
+<%= stylesheet_link_tag 'post.css' %>
 
-<%= render @post %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="container">
+  <%= render @post %>
+    <% if current_user == @post.user %>
+    <div class="d-flex justify-content-around mt-3">
+      <%= link_to "Edit Post", edit_post_path(@post), class: "action-btn" %>
+      <%= button_to "Delete Post", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "action-btn" %>
+    </div>
+    <% end %>
+    <div class="mt-3">
+    <%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-5" %>
+  </div>
+  </div>
 </div>
