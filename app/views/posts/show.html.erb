@@ -10,29 +10,26 @@
   <% end %>
 
   <%= render @post %>
-
-  <div class="mt-3">
-    <h2>Comments</h2>
-    <% @post.comment_posts.each do |comment_post| %>
-      <div class="comment">
-        <p><strong><%= comment_post.user.name %>:</strong> <%= comment_post.content %></p>
-      </div>
-    <% end %>
-  </div>
-
-  <% if logged_in? %>
-    <%= form_with(model: [@post, CommentPost.new]) do |form| %>
-      <div class="form-group">
-        <%= form.label :content, "New Comment" %>
-        <%= form.text_area :content, class: "form-control", rows: 3 %>
-      </div>
-      <%= form.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
-  <% else %>
-    <p>Please <%= link_to "log in", login_path %> to leave a comment.</p>
-  <% end %>
-
   <div class="mt-3">
     <%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-5" %>
   </div>
+
+  <h2>Comments</h2>
+  <%= form_with(model: [ @post, CommentPost.new ], url: post_comment_posts_path(@post), method: :post, local: true) do |form| %>
+    <div class="d-flex justify-content-around mb-5">
+      <div class="form-group col-lg-10">
+      <%= form.text_field :content, class: "form-control" %>
+      </div>
+      <%= form.submit "Add Comment", class: "btn btn-primary ml-2" %>
+    </div>
+  <% end %>
+
+  <% @post.comment_posts.each do |comment| %>
+    <div class="card mb-3 mt-3">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <p class="card-text m-0"><%= comment.content %></p>
+        <div class="text-muted m-0">By: <%= comment.user.name %></div>
+      </div>
+    </div> 
+  <% end %>
 </div>
