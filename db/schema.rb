@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_26_215911) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_28_135421) do
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -32,26 +32,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_215911) do
     t.index ["user_id"], name: "index_comment_posts_on_user_id"
   end
 
-  create_table "like_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_like_users_on_user_id"
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,10 +65,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_215911) do
     t.string "password_digest"
     t.string "instagram_link"
     t.string "linkedin_link"
+    t.string "facebook_link"
+    t.string "github_link"
+    t.string "twitter_link"
   end
 
   add_foreign_key "comment_posts", "posts"
   add_foreign_key "comment_posts", "users"
-  add_foreign_key "like_users", "users"
-  add_foreign_key "likes", "users"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
 end

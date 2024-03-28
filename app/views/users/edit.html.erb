@@ -1,67 +1,97 @@
-<%= render 'pages/navbar' %>
-
-
 <%= stylesheet_link_tag 'editprofile.css' %>
 
-
 <div class="user-form">
-<h2 class="text-center mt-2">Edit Profile</h2>
-<section class="user-edit-form">
-<%= render '/global/errors', obj: @user %>
-<%= form_with(model: @user, data: { turbo: false }, local: true, class: "form_con") do |f| %>
-  <div class="form_box">
-    <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "Enter your full name", class: "form-control"  %>
-  </div>
-
-  <div class="form_box email_box">
-    <%= f.label :email %>
-    <%= f.email_field :email, placeholder: "Enter your Email", class: "form-control" %>
-  </div>
-
-  <div class="form_box">
-    <%= f.label :program_name %>
-    <%= f.text_field :program_name, placeholder: "Enter your program", class: "form-control" %>
-  </div>
-
-  <div class="form_box">
-    <%= f.label :department %>
-    <%= f.text_field :department, placeholder: "Enter your department", class: "form-control" %>
-  </div>
-
-  <div class="form_box">
-    <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "Enter Password", class: "form-control" %>
-  </div>
-  
-  <div class="form_box mt-2">
-    <div class="form_box">
-      <h3>Social links</h3>
-    </div>
-
-    <div class="form_box">
-      <div class="input-group">
-        <span class="input-group-text"><i class="fab fa-instagram"></i></span>
-        <%= f.text_field :instagram_link, placeholder: "Enter your Instagram link", class: "form-control" %>
+  <h2 class="text-center mt-2">Edit Profile</h2>
+  <section class="user-edit-form">
+    <%= render '/global/errors', obj: @user %>
+    <%= form_with(model: @user, data: { turbo: false }, local: true, class: "form_con") do |f| %>
+      <div class="form_box">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: "Enter your full name", class: "form-control" %>
       </div>
-    </div>
-    
-    <div class="form_box">
-      <div class="input-group">
-        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
-        <%= f.text_field :linkedin_link, placeholder: "Enter your LinkedIn link", class: "form-control" %>
+
+      <div class="form_box email_box">
+        <%= f.label :email %>
+        <%= f.email_field :email, placeholder: "Enter your Email", class: "form-control" %>
       </div>
-    </div>
+
+      <div class="form_box">
+        <%= f.label :program_name %>
+        <%= f.text_field :program_name, placeholder: "Enter your program", class: "form-control" %>
+      </div>
+
+      <div class="form_box">
+        <%= f.label :department %>
+        <%= f.text_field :department, placeholder: "Enter your department", class: "form-control" %>
+      </div>
+
+      <div class="form_box">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "Enter Password", class: "form-control" %>
+      </div>
+
+
+
+      <div class="skill-div">
+        <h3 class="text-center mt-3 mb-3">Select Skills</h3>
+          <div class="form_box">
+            <div class="row">
+              <% @all_skills.in_groups_of(4, false).each do |skills_group| %>
+                <div class="col-lg-3 col-md-6">
+                  <% skills_group.each do |skill| %>
+                    <div>
+                      <%= check_box_tag "user[skill_ids][]", skill.id, @user.skills.include?(skill) %>
+                      <%= label_tag "user_skill_ids_#{skill.id}", skill.name %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+      </div>
+
+      <div class="social-media-links">
+        <h3 class="text-center mt-3 mb-3">Social Media Links</h3>
+          <div class="form_box">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+              <%= f.text_field :instagram_link, placeholder: "Enter your Instagram link", class: "form-control" %>
+            </div>
+          </div>
+      
+          <div class="form_box">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
+              <%= f.text_field :linkedin_link, placeholder: "Enter your LinkedIn link", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form_box">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+              <%= f.text_field :facebook_link, placeholder: "Enter your Facebook link", class: "form-control" %>
+            </div>
+          </div>
+          
+          <div class="form_box">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fab fa-github"></i></span>
+              <%= f.text_field :github_link, placeholder: "Enter your GitHub link", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="form_box">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+              <%= f.text_field :twitter_link, placeholder: "Enter your Twitter link", class: "form-control" %>
+            </div>
+          </div>
+      </div>
+
+
+
+      <div class="text-center mt-2">
+        <%= f.submit(@user.new_record? ? "Sign Up" : "Update account", class: "btn btn-primary sign_btn") %>
+      </div>
+    <% end %>
+  </section>
 </div>
-  
-  <div class="text-center mt-2">
-      <%= f.submit(@user.new_record? ? "Sign Up" : "Update account", class: "btn btn-primary sign_btn") %>
-  </div>
-
-<% end %>
-</section>
-
-</div>
-
-
-

@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase }
   before_save :add_https_to_links
+
   has_many :posts, dependent: :destroy
-  has_many :like_relationships, foreign_key: :liker_id, class_name: 'LikeUser', dependent: :destroy
-  has_many :liked_users, through: :like_relationships, source: :liked_user
+  has_many :user_skills
+  has_many :skills, through: :user_skills
 
   validates :name, presence: true, length: { minimum: 2, maximum: 30 }
 
@@ -17,13 +18,21 @@ class User < ApplicationRecord
   end
 
   def facebook_link?
-    linkedin_link.present?
+    facebook_link.present?
+  end
+
+  def github_link?
+    github_link.present?
+  end
+
+  def twitter_link?
+    twitter_link.present?
   end
 
   private
 
   def add_https_to_links
-    link_attributes = [:instagram_link, :linkedin_link]
+    link_attributes = [:instagram_link, :linkedin_link, :facebook_link, :github_link, :twitter_link]
 
     link_attributes.each do |attribute|
       if self[attribute].present? && !self[attribute].start_with?('http://', 'https://')
