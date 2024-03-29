@@ -10,7 +10,7 @@
             
             <% if logged_in? %>
                 <% user = User.find_by(id: current_user.id) %>
-                <%= link_to "Explore Profiles", users_path(user), class: "btn btn-primary mt-3" %>
+                <%= link_to "Explore Profiles", users_path(user), class: "btn btn-primary my-3" %>
             <% end %>
         </div>
     </div>

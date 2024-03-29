@@ -1,6 +1,12 @@
 <%= stylesheet_link_tag 'editprofile.css' %>
 
 <div class="user-form">
+  <% unless @user.new_record? %>
+    <div class="text-end mt-2">
+      <%= link_to "Delete Profile", user_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete your account?" }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+
   <h2 class="text-center mt-2">Edit Profile</h2>
   <section class="user-edit-form">
     <%= render '/global/errors', obj: @user %>

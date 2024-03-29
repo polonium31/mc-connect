@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_user, only: [:new, :create]
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update]
 
   # Users lists
   def index
@@ -45,15 +45,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # Delete user action
-  def destroy
-    if @user.destroy
-      flash[:notice] = "Account deleted"
-      redirect_to root_path
-    else
-      flash[:alert] = "Unable to delete account"
-    end
-  end
 
   private
 
@@ -62,6 +53,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
   end
 end

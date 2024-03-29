@@ -26,3 +26,33 @@
     text-align: center;
     margin: 0 auto;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .homepage-main-div {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .homepage-image {
+        max-width: 80%;
+    }
+
+    .homepage-heading {
+        font-size: 2rem;
+    }
+
+    .homepage-description {
+        font-size: 1rem;
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .homepage-heading {
+        font-size: 1.5rem;
+    }
+
+    .homepage-description {
+        font-size: 0.875rem;
+    }
+}

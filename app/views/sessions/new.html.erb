@@ -1,8 +1,5 @@
 <%= stylesheet_link_tag 'login.css' %>
 <div class="main-login-div">
-  <div class="text-center mb-4 border-1">
-    <%= image_tag("logo.png", alt: "Logo", class: "logo-img") %>
-  </div>
   <div class="user-form container">
       <%= form_with(scope: :session, url: signin_path, class: "form_con") do |f| %>
       

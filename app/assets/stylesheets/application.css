@@ -1,4 +1,6 @@
-
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
 body, html {
     margin: 0;
     padding: 0;
@@ -8,6 +10,7 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .container {

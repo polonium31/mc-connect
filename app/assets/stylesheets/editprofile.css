@@ -1,11 +1,29 @@
-.user-edit-form{
+.user-form{
+    margin-bottom: 5%;
+}
+.user-edit-form {
     width: 50%;
     margin: 0 auto;
 }
-.form_box{
-    margin:10px;
+
+.form_box {
+    margin: 10px;
 }
-.form_box label{
+
+.form_box label {
     font-size: 20px;
     font-weight: bold;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .user-edit-form {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .user-edit-form {
+        width: 95%;
+    }
 }

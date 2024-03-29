@@ -1,11 +1,11 @@
 .main-login-div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
+    margin: 3%;
 }
+
+
 .user-form {
     margin: 0 auto;
     padding: 20px;
@@ -17,44 +17,35 @@
     backdrop-filter: blur(5px);
 }
 
-
-.logo-img {
-    width: 50%;
-}
-
-
-.form-group{
+.form-group {
     margin-bottom: 1.5rem;
-
 }
 
-.form-group label{
+.form-group label {
     font-weight: 600;
     font-size: large;
-    
 }
 
 .sign_btn {
     box-sizing: border-box;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 2px solid #0a64ff;
-  border-radius: 0.6em;
-  color: #0a64ff;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 10px;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #0a64ff;
+    border-radius: 0.6em;
+    color: #0a64ff;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 10px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
-.sign_btn:hover{  
+.sign_btn:hover {
     border-color: #0011ff;
     color: #000000;
     background-image: -webkit-linear-gradient(45deg, #0a64ff 50%, transparent 50%);
@@ -64,16 +55,17 @@
     -webkit-transition: background 300ms ease-in-out;
     transition: background 300ms ease-in-out;
 }
-.alter-div p{
 
+.alter-div p {
     margin-bottom: 0;
 }
+
 .signup_btn {
     border: 2px solid #ff0000;
     color: #ff0000;
 }
 
-.signup_btn:hover{  
+.signup_btn:hover {
     border-color: #0011ff;
     color: #000000;
     background-image: -webkit-linear-gradient(45deg, #f9c21c 50%, transparent 50%);
@@ -82,4 +74,17 @@
     background-size: 400%;
     -webkit-transition: background 300ms ease-in-out;
     transition: background 300ms ease-in-out;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .user-form {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .user-form {
+        width: 90%;
+    }
 }
