@@ -30,7 +30,7 @@
 /* Media Queries */
 @media only screen and (max-width: 768px) {
     .homepage-main-div {
-        flex-direction: column; /* Stack items vertically on smaller screens */
+        flex-direction: column;
     }
 
     .homepage-image {
